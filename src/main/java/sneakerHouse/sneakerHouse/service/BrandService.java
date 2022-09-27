@@ -6,6 +6,7 @@
 package sneakerHouse.sneakerHouse.service;
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,8 @@ public class BrandService {
     public List<Brand> listBrand(){
      return (List<Brand>) brandrepo.findAll();
     }
-   
+    public Optional<Brand> findBrand(String id_brand){
+        return brandrepo.findById(id_brand);
+    }
+    
 }

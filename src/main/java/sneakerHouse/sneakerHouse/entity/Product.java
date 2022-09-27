@@ -5,11 +5,17 @@
  */
 package sneakerHouse.sneakerHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -19,40 +25,44 @@ import javax.persistence.Table;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id_product;
-    private int id_brand;
+    @Column(name = "id_product")
+    private String id_product;
+//    @Column(name = "id_brand")
+//    private String id_brand;
+    @Column(name = "name")
     private String name;
+    @Column(name = "color")
     private String color;
+    @Column(name = "price")
     private int price;
+    @Column(name = "description")
     private String description;
+    @Column(name = "trending")
     private int trending;
 
-    public Product(Long id_product, int id_brand, String name, String color, int price, String description, int trending) {
-        this.id_product = id_product;
-        this.id_brand = id_brand;
-        this.name = name;
-        this.color = color;
-        this.price = price;
-        this.description = description;
-        this.trending = trending;
-    }
+  
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_brand",nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JsonBackReference
+    private Brand brand;
+ 
     
-    public Long getId_product() {
+    public String getId_product() {
         return id_product;
     }
 
-    public void setId_product(Long id_product) {
+    public void setId_product(String id_product) {
         this.id_product = id_product;
     }
 
-    public int getId_brand() {
-        return id_brand;
-    }
-
-    public void setId_brand(int id_brand) {
-        this.id_brand = id_brand;
-    }
+//    public String getId_brand() {
+//        return id_brand;
+//    }
+//
+//    public void setId_brand(String id_brand) {
+//        this.id_brand = id_brand;
+//    }
 
     public String getName() {
         return name;
@@ -93,5 +103,14 @@ public class Product {
     public void setTrending(int trending) {
         this.trending = trending;
     }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+    
     
 }

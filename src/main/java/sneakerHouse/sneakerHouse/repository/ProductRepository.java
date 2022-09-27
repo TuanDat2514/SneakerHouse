@@ -15,7 +15,7 @@ import org.springframework.data.repository.query.Param;
  *
  * @author Admin
  */
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, String> {
 
 
  

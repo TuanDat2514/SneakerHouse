@@ -6,13 +6,12 @@
 package sneakerHouse.sneakerHouse.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-import sneakerHouse.sneakerHouse.entity.Brand;
+import sneakerHouse.sneakerHouse.entity.Cart;
 
 /**
  *
  * @author Admin
  */
-public interface BrandRepository extends CrudRepository<Brand, String> {
+public interface CartRepository extends JpaRepository<Cart, Long> {
     
 }

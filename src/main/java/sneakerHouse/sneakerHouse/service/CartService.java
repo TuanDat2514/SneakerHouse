@@ -5,27 +5,24 @@
  */
 package sneakerHouse.sneakerHouse.service;
 
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sneakerHouse.sneakerHouse.entity.Product;
-import sneakerHouse.sneakerHouse.repository.ProductRepository;
+import sneakerHouse.sneakerHouse.entity.Cart;
+import sneakerHouse.sneakerHouse.repository.CartRepository;
 
 /**
  *
  * @author Admin
  */
 @Service
-public class ProductService {
+public class CartService {
     @Autowired
-    ProductRepository prodRepo;
-    
-    public List<Product> listAll() {
-        return prodRepo.findAll();
+    CartRepository cartRepository;
+    public List<Cart> listCart(){
+        return cartRepository.findAll();
     }
-    public void save(Product addProduct){
-        prodRepo.save(addProduct).equals(this);
+    public void save(Cart cart){
+        cartRepository.save(cart);
     }
-    
 }
