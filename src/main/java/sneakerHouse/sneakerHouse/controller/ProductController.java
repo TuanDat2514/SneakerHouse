@@ -8,6 +8,7 @@ package sneakerHouse.sneakerHouse.controller;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import javax.validation.constraints.Past;
 import jdk.nashorn.internal.runtime.options.Option;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,10 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@RequestBody Product newProduct){
           productService.save(newProduct);
         return new ResponseEntity<>(null, HttpStatus.valueOf(200));
+    }
+    
+    @GetMapping("/getProdbyId/{id_product}")
+    public Optional<Product> getList(@PathVariable String id_product){
+        return productService.getProductbyId(id_product);
     }
 }

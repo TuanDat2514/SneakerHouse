@@ -33,6 +33,7 @@ public class Brand {
     @Column(name = "brand")
     private String brand;
 
+    private String table_size;
     @OneToMany(mappedBy = "brand",cascade = CascadeType.ALL)
     @JsonManagedReference
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
@@ -58,7 +59,7 @@ public class Brand {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-
+    
 //    public List<Product> getProduct() {
 //        return products;
 //    }
@@ -66,6 +67,30 @@ public class Brand {
 //    public void setProduct(List<Product> products) {
 //        this.products = products;
 //    }
+
+    public String getTable_size() {
+        return table_size;
+    }
+
+    public void setTable_size(String table_size) {
+        this.table_size = table_size;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public List<Size> getSize() {
+        return size;
+    }
+
+    public void setSize(List<Size> size) {
+        this.size = size;
+    }
 
    
 

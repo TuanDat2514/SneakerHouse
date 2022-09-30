@@ -7,6 +7,7 @@ package sneakerHouse.sneakerHouse.service;
 
 
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sneakerHouse.sneakerHouse.entity.Product;
@@ -26,6 +27,9 @@ public class ProductService {
     }
     public void save(Product addProduct){
         prodRepo.save(addProduct).equals(this);
+    }
+    public Optional<Product> getProductbyId(String id){
+        return prodRepo.findById(id);
     }
     
 }

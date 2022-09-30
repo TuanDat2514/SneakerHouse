@@ -6,6 +6,8 @@
 package sneakerHouse.sneakerHouse.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 
@@ -27,8 +31,8 @@ public class Product {
     @Id
     @Column(name = "id_product")
     private String id_product;
-//    @Column(name = "id_brand")
-//    private String id_brand;
+    
+    private String id_brand;
     @Column(name = "name")
     private String name;
     @Column(name = "color")
@@ -39,30 +43,47 @@ public class Product {
     private String description;
     @Column(name = "trending")
     private int trending;
+    private int gender;
+    private String img;
+    private String sub_img;
 
   
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_brand",nullable = false)
+    @JoinColumn(name = "id_brand_link",nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JsonBackReference
     private Brand brand;
  
     
-    public String getId_product() {
-        return id_product;
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+     @JsonManagedReference
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Stock> stock;
+
+    public List<Stock> getStock() {
+        return stock;
     }
 
+    public void setStock(List<Stock> stock) {
+        this.stock = stock;
+    }
+    
+  
     public void setId_product(String id_product) {
         this.id_product = id_product;
     }
 
-//    public String getId_brand() {
-//        return id_brand;
-//    }
-//
-//    public void setId_brand(String id_brand) {
-//        this.id_brand = id_brand;
-//    }
+    public String getId_product() {
+        return id_product;
+    }
+    
+    public String getId_brand() {
+        return id_brand;
+    }
+
+    public void setId_brand(String id_brand) {
+        this.id_brand = id_brand;
+    }
 
     public String getName() {
         return name;
@@ -111,6 +132,29 @@ public class Product {
     public void setBrand(Brand brand) {
         this.brand = brand;
     }
-    
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getSub_img() {
+        return sub_img;
+    }
+
+    public void setSub_img(String sub_img) {
+        this.sub_img = sub_img;
+    }
     
 }

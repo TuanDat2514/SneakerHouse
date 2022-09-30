@@ -5,11 +5,40 @@
  */
 package sneakerHouse.sneakerHouse.controller;
 
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import sneakerHouse.sneakerHouse.dto.SizeStockDto;
+import sneakerHouse.sneakerHouse.entity.Stock;
+import sneakerHouse.sneakerHouse.repository.StockRepository;
+import sneakerHouse.sneakerHouse.service.StockService;
+
 /**
  *
  * @author Admin
  */
-
+@CrossOrigin
+@RestController
+@RequestMapping("/stock")
 public class StockController {
+    @Autowired
+    StockService stockService;
+    @Autowired
+    StockRepository stockRepository;
     
+//    @GetMapping("/all")
+//    public List<Stock> getStock(){
+//        return (List<Stock>) stockService.getAll();
+//        
+//    }
+     @GetMapping("/all/{id_product}")
+    public List<?> getStock(@PathVariable String id_product){
+        return stockRepository.getStock(id_product);
+        
+    }
 }

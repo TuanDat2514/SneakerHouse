@@ -5,19 +5,19 @@
  */
 package sneakerHouse.sneakerHouse.repository;
 
-import java.util.Collection;
 import java.util.List;
-import sneakerHouse.sneakerHouse.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+import sneakerHouse.sneakerHouse.dto.SizeStockDto;
+import sneakerHouse.sneakerHouse.entity.Stock;
+
 /**
  *
  * @author Admin
  */
-public interface ProductRepository extends JpaRepository<Product, String> {
-    @Query(value = "select p from Product p")
-    List<Product> getListProduct();
-
- 
+public interface StockRepository extends JpaRepository<Stock, Long> {
+    @Query(value="select st.id_product as id_product,s.size,s.gender,st.amount from Size s INNER JOIN Stock st ON s.id_size=st.id_size Where st.id_product=?1")
+    List<?> getStock(@Param("id_product") String id_product);
 }

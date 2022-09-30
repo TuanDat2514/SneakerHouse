@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import sneakerHouse.sneakerHouse.repository.BrandRepository;
  *
  * @author Admin
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
@@ -32,7 +34,7 @@ public class BrandController {
         return (List<?>) brandService.listBrand();
     }
     
-    @GetMapping("/{id_brand}")
+    @GetMapping("/getBrand/{id_brand}")
     public Optional<Brand> getBrand(@PathVariable String id_brand){
       return brandService.findBrand(id_brand);
     }
