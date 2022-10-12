@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sneakerHouse.sneakerHouse.service.BrandService;
 import sneakerHouse.sneakerHouse.entity.Brand;
@@ -29,6 +30,9 @@ public class BrandController {
     @Autowired
     BrandService brandService;
     
+    @Autowired
+    BrandRepository brandRepository;
+    
     @GetMapping("/all")
     public List<?> list(){
         return (List<?>) brandService.listBrand();
@@ -38,4 +42,6 @@ public class BrandController {
     public Optional<Brand> getBrand(@PathVariable String id_brand){
       return brandService.findBrand(id_brand);
     }
+    
+  
 }

@@ -28,5 +28,5 @@ public class BrandService {
     public Optional<Brand> findBrand(String id_brand){
         return brandrepo.findById(id_brand);
     }
-    
+  
 }

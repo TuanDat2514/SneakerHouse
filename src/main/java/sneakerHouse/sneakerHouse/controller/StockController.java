@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -36,9 +36,9 @@ public class StockController {
 //        return (List<Stock>) stockService.getAll();
 //        
 //    }
-     @GetMapping("/all/{id_product}")
-    public List<?> getStock(@PathVariable String id_product){
-        return stockRepository.getStock(id_product);
+     @GetMapping("/stockProduct/{id_product}")
+    public List<?> getStock(@PathVariable String id_product,@RequestParam int gender){
+        return stockRepository.getStock(id_product,gender);
         
     }
 }

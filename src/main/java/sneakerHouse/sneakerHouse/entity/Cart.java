@@ -5,11 +5,17 @@
  */
 package sneakerHouse.sneakerHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -21,11 +27,35 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.AUTO)
      private Long id_cart;
      private Long id_user;
-     private Date date;
+     private String date;
      private int subtotal;
      private int discount;
      private int total;
+     
+     @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<DetailCart> detailCart = new ArrayList<>();
 
+    public Cart() {
+    }
+
+    public Cart(Long id_cart, Long id_user, String date, int subtotal, int discount, int total, List<DetailCart> detailCart) {
+        this.id_cart = id_cart;
+        this.id_user = id_user;
+        this.date = date;
+        this.subtotal = subtotal;
+        this.discount = discount;
+        this.total = total;
+        this.detailCart = detailCart;
+    }
+     public void addDetail(DetailCart newdetailCart) {
+        detailCart.add(newdetailCart);
+        newdetailCart.setCart(this);
+    }
+     public void removeDetail(DetailCart deletedetailCart) {
+        detailCart.remove(deletedetailCart);
+    }
     public Long getId_cart() {
         return id_cart;
     }
@@ -42,11 +72,11 @@ public class Cart {
         this.id_user = id_user;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -72,6 +102,14 @@ public class Cart {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public List<DetailCart> getDetailCart() {
+        return detailCart;
+    }
+
+    public void setDetailCart(List<DetailCart> detailCart) {
+        this.detailCart = detailCart;
     }
      
      

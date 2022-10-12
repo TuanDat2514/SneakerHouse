@@ -5,25 +5,22 @@
  */
 package sneakerHouse.sneakerHouse.service;
 
-import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sneakerHouse.sneakerHouse.dto.SizeStockDto;
-import sneakerHouse.sneakerHouse.repository.StockRepository;
+import sneakerHouse.sneakerHouse.entity.User;
+import sneakerHouse.sneakerHouse.repository.UserRepository;
 
 /**
  *
  * @author Admin
  */
 @Service
-public class StockService {
+public class UserService {
     @Autowired
-    StockRepository stockRepository;
+    UserRepository userRepository;
     
-//    public List<?> getStock(){
-//        return stockRepository.getStock();
-//    }   
-//    public List<?> getAll(){
-//        return stockRepository.findAll();
-//    }
+    public Optional<User> getUser(Long id_user){
+        return userRepository.findById(id_user);
+    }
 }

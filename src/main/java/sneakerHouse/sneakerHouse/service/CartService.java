@@ -25,4 +25,7 @@ public class CartService {
     public void save(Cart cart){
         cartRepository.save(cart);
     }
+    public  Cart getCart(Long id_cart){
+        return cartRepository.getCartbyId(id_cart);
+    }
 }

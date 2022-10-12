@@ -13,11 +13,11 @@ import org.springframework.stereotype.Repository;
 import sneakerHouse.sneakerHouse.dto.SizeStockDto;
 import sneakerHouse.sneakerHouse.entity.Stock;
 
-/**
+/**s
  *
  * @author Admin
  */
 public interface StockRepository extends JpaRepository<Stock, Long> {
-    @Query(value="select st.id_product as id_product,s.size,s.gender,st.amount from Size s INNER JOIN Stock st ON s.id_size=st.id_size Where st.id_product=?1")
-    List<?> getStock(@Param("id_product") String id_product);
+    @Query(value="select st.id_product as id_product,s.size,s.gender,st.amount from Size s LEFT JOIN Stock st ON s.id_size=st.id_size Where st.id_product=?1 and s.gender=?2")
+    List<?> getStock(@Param("id_product") String id_product,int gender);
 }

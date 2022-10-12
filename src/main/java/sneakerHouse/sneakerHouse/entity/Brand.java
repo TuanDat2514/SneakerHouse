@@ -39,10 +39,10 @@ public class Brand {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Product> products;
     
-    @OneToMany(mappedBy = "size_brand",cascade = CascadeType.ALL)
-    @JsonManagedReference
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Size> size;
+//    @OneToMany(mappedBy = "size_brand",cascade = CascadeType.ALL)
+//    @JsonManagedReference
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    private List<Size> size;
     
     public String getId_brand() {
         return id_brand;
@@ -83,14 +83,14 @@ public class Brand {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
-
-    public List<Size> getSize() {
-        return size;
-    }
-
-    public void setSize(List<Size> size) {
-        this.size = size;
-    }
+//
+//    public List<Size> getSize() {
+//        return size;
+//    }
+//
+//    public void setSize(List<Size> size) {
+//        this.size = size;
+//    }
 
    
 

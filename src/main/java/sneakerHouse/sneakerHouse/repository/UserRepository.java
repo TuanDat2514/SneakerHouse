@@ -5,17 +5,16 @@
  */
 package sneakerHouse.sneakerHouse.repository;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
-import sneakerHouse.sneakerHouse.entity.Brand;
+import sneakerHouse.sneakerHouse.entity.User;
 
 /**
  *
  * @author Admin
  */
-public interface BrandRepository extends CrudRepository<Brand, String> {
-     
+public interface UserRepository extends CrudRepository<User, Long> {
+    @Query(value = "select u from User u where u.id_user=?1")
+    public User getUserbyId(Long id_user);
+    
 }

@@ -5,11 +5,16 @@
  */
 package sneakerHouse.sneakerHouse.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -29,7 +34,38 @@ public class User {
     private String username;
     private String password;
     private String role;
+    
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,
+        orphanRemoval = true)
+    @JsonManagedReference
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Favorite> favorite ;
 
+    public User(Long id_user, String fullname, String address, Date birthday, String phone, int gender, String email, String username, String password, String role, List<Favorite> favorite) {
+        this.id_user = id_user;
+        this.fullname = fullname;
+        this.address = address;
+        this.birthday = birthday;
+        this.phone = phone;
+        this.gender = gender;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.favorite = favorite;
+    }
+
+    public User() {
+    }
+     public void addFavorite(Favorite newFavorite) {
+        favorite.add(newFavorite);
+        newFavorite.setUser(this);
+    }
+     public void removeFavorite(Favorite deleteFavorite) {
+        favorite.remove(deleteFavorite);
+        deleteFavorite.setUser(null);
+    }
+    
     public Long getId_user() {
         return id_user;
     }
@@ -108,6 +144,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public List<Favorite> getFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(List<Favorite> favorite) {
+        this.favorite = favorite;
     }
     
     
