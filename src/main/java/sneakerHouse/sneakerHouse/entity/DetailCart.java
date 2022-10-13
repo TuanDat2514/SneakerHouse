@@ -11,9 +11,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 
@@ -26,34 +28,38 @@ import org.hibernate.annotations.Cascade;
 public class DetailCart {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String id_product;
-//    private int id_cart;
+    private Long cart_id;
     private String img;
     private double size;
     private int quantity;
     private int price_prod;
     private int total_prod;
+    private String color;
+    private String name;
+   
+    
+//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//    @JoinColumn(name = "cart_id", nullable = false)
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    @JsonBackReference
+//    private Cart cart;
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JsonBackReference
-    private Cart cart;
+//    public DetailCart() {
+//    }
+//
+//    public DetailCart(Long id, String id_product, double size, int quantity, int price_prod, int total_prod) {
+//        this.id = id;
+//        this.id_product = id_product;
+//        this.size = size;
+//        this.quantity = quantity;
+//        this.price_prod = price_prod;
+//        this.total_prod = total_prod;
+//    }
 
-    public DetailCart() {
-    }
-
-    public DetailCart(Long id, String id_product, double size, int quantity, int price_prod, int total_prod) {
-        this.id = id;
-        this.id_product = id_product;
-        this.size = size;
-        this.quantity = quantity;
-        this.price_prod = price_prod;
-        this.total_prod = total_prod;
-    }
-
+    
     public String getId_product() {
         return id_product;
     }
@@ -70,13 +76,30 @@ public class DetailCart {
         this.img = img;
     }
     
-//    public int getId_cart() {
-//        return id_cart;
-//    }
-//
-//    public void setId_cart(int id_cart) {
-//        this.id_cart = id_cart;
-//    }
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getCart_id() {
+        return cart_id;
+    }
+
+    public void setCart_id(Long cart_id) {
+        this.cart_id = cart_id;
+    }
+
+    
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public double getSize() {
         return size;
@@ -118,12 +141,12 @@ public class DetailCart {
         this.price_prod = price_prod;
     }
 
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
-    }
+//    public Cart getCart() {
+//        return cart;
+//    }
+//
+//    public void setCart(Cart cart) {
+//        this.cart = cart;
+//    }
     
 }

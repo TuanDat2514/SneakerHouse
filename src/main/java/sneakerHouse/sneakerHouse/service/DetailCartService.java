@@ -26,15 +26,47 @@ import sneakerHouse.sneakerHouse.repository.DetailCartRepository;
  */
 @Service
 public class DetailCartService {
+
     @Autowired
     DetailCartRepository detailCartRepository;
-    @Autowired 
+    @Autowired
     CartRepository cartRepository;
-    
-    @Transactional
-    public void addDetail(DetailCart detailCart,Long id_cart){
-        Cart cart=cartRepository.getCartbyId(id_cart);
-        cart.addDetail(detailCart);
+
+//    @Transactional
+//    public void addDetail(DetailCart detailCart,Long id_cart){
+//        Cart cart=cartRepository.getCartbyId(id_cart);
+//        cart.addDetail(detailCart);
+//    }
+    public void addDetail(DetailCart detailCart) {
+        detailCartRepository.save(detailCart);
     }
+//   public void deletebyId(DetailCart detailCart,Long id_cart){
+//     Cart cart=cartRepository.getCartbyId(id_cart);
+//     cart.removeDetail(detailCart);
+//    }
     
+     
+//    public List<DetailCart> getDetail(Long cart_id) {
+//        return (List<DetailCart>) detailCartRepository.getDetailbyCart(cart_id);
+//    }
+
+    public void delete(Long id_detail) {
+        detailCartRepository.deleteById(id_detail);
+    }
+    public DetailCart update(Long id_detail,DetailCart detailCart){
+       DetailCart dc= detailCartRepository.findById(id_detail).orElse(null);
+        if(dc==null){
+            return null;
+        }
+        dc.setId_product(detailCart.getId_product());
+        dc.setCart_id(detailCart.getCart_id());
+        dc.setColor(detailCart.getColor());
+        dc.setName(detailCart.getName());
+        dc.setImg(detailCart.getImg());
+        dc.setSize(detailCart.getSize());
+        dc.setPrice_prod(detailCart.getPrice_prod());
+        dc.setQuantity(detailCart.getQuantity());
+        dc.setTotal_prod(detailCart.getTotal_prod());
+        return detailCartRepository.save(dc);
+    }
 }

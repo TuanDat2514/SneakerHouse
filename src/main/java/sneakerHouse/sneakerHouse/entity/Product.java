@@ -53,7 +53,7 @@ public class Product {
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @JsonBackReference
     private Brand brand;
- 
+    
     
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
      @JsonManagedReference

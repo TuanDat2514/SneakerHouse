@@ -31,9 +31,8 @@ public class FavoriteService {
         User user=userRepository.getUserbyId(id_user);
         user.addFavorite(favorite);
     }
-    @Transactional
-    public void deleteFavorite(Favorite favorite,Long id_user){
-        User user=userRepository.getUserbyId(id_user);
-        user.removeFavorite(favorite);
+
+    public void delete(Long id_favorite){
+        favoriteRepository.deleteFavotite(id_favorite);
     }
 }
