@@ -31,5 +31,8 @@ public class ProductService {
     public Optional<Product> getProductbyId(String id){
         return prodRepo.findById(id);
     }
+    public List<Product> listProductbyGender(int gender){
+        return prodRepo.getProductbyGender(gender);
+    }
     
 }
