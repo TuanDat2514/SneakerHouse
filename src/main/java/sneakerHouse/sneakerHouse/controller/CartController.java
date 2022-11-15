@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sneakerHouse.sneakerHouse.entity.Cart;
+import sneakerHouse.sneakerHouse.entity.DetailCart;
 import sneakerHouse.sneakerHouse.service.CartService;
 
 /**
@@ -45,4 +47,10 @@ public class CartController {
         cartService.save(addCart);
         return new ResponseEntity<>(addCart, HttpStatus.valueOf(200));
     }
+    
+    @PutMapping("/update/{id_cart}")
+    public Cart update(@PathVariable Long id_cart, @RequestBody Cart cart) {
+        return cartService.updateCart(id_cart, cart);
+    }
+    
 }

@@ -25,7 +25,19 @@ public class CartService {
     public void save(Cart cart){
         cartRepository.save(cart);
     }
-    public  Cart getCart(Long id_cart){
+    public Cart getCart(Long id_cart){
         return cartRepository.getCartbyId(id_cart);
+    }
+    public Cart updateCart(Long id_cart,Cart cart){
+        Cart c=cartRepository.getCartbyId(id_cart);
+        if(c == null){
+            return null;
+        }
+        c.setDiscount(cart.getDiscount());
+        c.setSubtotal(cart.getSubtotal());
+        c.setTotal(cart.getTotal());
+        c.setId_user(cart.getId_user());
+        c.setDate(cart.getDate());
+        return cartRepository.save(c);
     }
 }
