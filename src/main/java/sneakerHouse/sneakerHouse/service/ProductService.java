@@ -34,5 +34,29 @@ public class ProductService {
     public List<Product> listProductbyGender(int gender){
         return prodRepo.getProductbyGender(gender);
     }
+    public List<Product> listProductbyFilter(int gender,String color,String id_brand){
+        return prodRepo.getProductbyFilter(gender,color,id_brand);
+    }
+    public List<Product> listProductbyBrand(String id_brand){
+        return prodRepo.getProductbyBrand(id_brand);      
+    }
     
+    public List<Product> listProductbyColor(String color){
+        return prodRepo.getProductbyColor(color);      
+    }
+    
+    public void delete(Long id_detail) {
+        prodRepo.deleteById(id_detail.toString());
+    }
+    
+    public Product updateProdcut(Product updateProduct){
+        Product oldProduct = prodRepo.getProductbyId(updateProduct.getId_product());
+        if(oldProduct == null){
+            return null;
+        }
+        oldProduct.setDescription(updateProduct.getDescription());
+        oldProduct.setPrice(updateProduct.getPrice());
+        
+        return prodRepo.save(oldProduct);
+    }
 }

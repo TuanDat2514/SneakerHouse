@@ -27,5 +27,5 @@ public interface DetailCartRepository extends CrudRepository<DetailCart, Long> {
 //    @Query(value = "delete from Detailcart dc where dc.id=?1")
 //    void deleteDetail(Long id);
     @Query("select d from DetailCart d where d.cart_id=?1")
-    List<?> getDetailbyCart(Long cart_id);
+    List<DetailCart> getDetailbyCart(Long cart_id);
 }

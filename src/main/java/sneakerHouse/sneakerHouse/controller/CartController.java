@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import sneakerHouse.sneakerHouse.entity.Cart;
 import sneakerHouse.sneakerHouse.entity.DetailCart;
+import sneakerHouse.sneakerHouse.repository.CartRepository;
 import sneakerHouse.sneakerHouse.service.CartService;
 
 /**
@@ -31,6 +33,8 @@ import sneakerHouse.sneakerHouse.service.CartService;
 public class CartController {
     @Autowired
     CartService cartService;
+    @Autowired
+    CartRepository cartRepository;
     
     @GetMapping("/all")
     public List<Cart> listCart(){
@@ -52,5 +56,10 @@ public class CartController {
     public Cart update(@PathVariable Long id_cart, @RequestBody Cart cart) {
         return cartService.updateCart(id_cart, cart);
     }
+    @GetMapping("/getListCart")
+    public List<Cart> getListCart(){
+        return cartService.getListCart();
+    }
+   
     
 }

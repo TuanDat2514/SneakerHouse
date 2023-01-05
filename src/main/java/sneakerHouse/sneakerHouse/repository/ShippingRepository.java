@@ -5,6 +5,7 @@
  */
 package sneakerHouse.sneakerHouse.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import sneakerHouse.sneakerHouse.entity.Shipping;
 
@@ -14,4 +15,6 @@ import sneakerHouse.sneakerHouse.entity.Shipping;
  */
 public interface ShippingRepository extends CrudRepository<Shipping, Long> {
     
+    @Query(value = "select s from Shipping s where s.cart_id=?1")
+    Shipping getShippingbyId(Long cart_id);
 }

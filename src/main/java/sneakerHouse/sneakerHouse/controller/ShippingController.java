@@ -5,15 +5,24 @@
  */
 package sneakerHouse.sneakerHouse.controller;
 
+import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import sneakerHouse.sneakerHouse.dto.ShippingDetailCartDto;
+import sneakerHouse.sneakerHouse.entity.DetailCart;
 import sneakerHouse.sneakerHouse.entity.Shipping;
+import sneakerHouse.sneakerHouse.repository.DetailCartRepository;
+import sneakerHouse.sneakerHouse.repository.ShippingRepository;
 import sneakerHouse.sneakerHouse.service.ShippingService;
 
 /**
@@ -26,10 +35,20 @@ import sneakerHouse.sneakerHouse.service.ShippingService;
 public class ShippingController {
     @Autowired
     ShippingService shippingService;
+   
+    @Autowired
+    DetailCartRepository detailCartRepository;
     
     @PostMapping("/add")
     public void save(@RequestBody Shipping shipping){
         shippingService.save(shipping);
     }
- 
+    
+    @GetMapping("/{cart_id}")
+    public Shipping getShippingbyId(@PathVariable Long cart_id){
+       Shipping s =  shippingService.getShippingbyId(cart_id);
+        List<DetailCart> dc = detailCartRepository.getDetailbyCart(cart_id);
+           s.setDetailCart(dc);
+        return s;
+    }
 }

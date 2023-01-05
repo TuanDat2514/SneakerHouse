@@ -7,27 +7,19 @@ package sneakerHouse.sneakerHouse.dto;
 
 /**
  *
- * @author Admin
+ * @author AS-L42
  */
-public class ProductSizeDto {
-    String id_product;
-    double size;
+public class Filter {
+    String brand;
     int gender;
+    String color;
 
-    public String getId_product() {
-        return id_product;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setId_product(String id_product) {
-        this.id_product = id_product;
-    }
-
-    public double getSize() {
-        return size;
-    }
-
-    public void setSize(double size) {
-        this.size = size;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public int getGender() {
@@ -37,7 +29,13 @@ public class ProductSizeDto {
     public void setGender(int gender) {
         this.gender = gender;
     }
-    
-    
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
     
 }

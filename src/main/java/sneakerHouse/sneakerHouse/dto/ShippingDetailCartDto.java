@@ -3,58 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sneakerHouse.sneakerHouse.entity;
+package sneakerHouse.sneakerHouse.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
+import sneakerHouse.sneakerHouse.entity.DetailCart;
 
 /**
  *
- * @author Admin
+ * @author AS-L42
  */
-@Entity
-@Table(name = "shipping")
-public class Shipping {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+public class ShippingDetailCartDto {
     Long cart_id;
     String consignee;
     String consignee_phone;
     String delivery_address;
     String delivery_method;
     String payment_method;
-
-   @OneToMany(mappedBy = "shipping",cascade = CascadeType.ALL)
-   @JsonManagedReference
-   @Cascade(org.hibernate.annotations.CascadeType.ALL)
-   private List<DetailCart> detailCart;
-
-    public List<DetailCart> getDetailCart() {
-        return detailCart;
-    }
-
-    public void setDetailCart(List<DetailCart> detailCart) {
-        this.detailCart = detailCart;
-    }
-    
-   
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
+    List detailcart;
     public Long getCart_id() {
         return cart_id;
     }
@@ -102,6 +70,16 @@ public class Shipping {
     public void setPayment_method(String payment_method) {
         this.payment_method = payment_method;
     }
+
+    public List getDetailcart() {
+        return detailcart;
+    }
+
+    public void setDetailcart(List detailcart) {
+        this.detailcart = detailcart;
+    }
+
+ 
     
     
 }

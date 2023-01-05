@@ -46,8 +46,6 @@ public class Product {
     private int gender;
     private String img;
     private String sub_img;
-
-  
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_brand_link",nullable = false)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)

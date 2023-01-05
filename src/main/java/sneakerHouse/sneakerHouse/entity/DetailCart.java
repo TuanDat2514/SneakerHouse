@@ -41,11 +41,11 @@ public class DetailCart {
     private String name;
    
     
-//    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-//    @JoinColumn(name = "cart_id", nullable = false)
-//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    @JsonBackReference
-//    private Cart cart;
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JoinColumn(name = "cart_id_link", nullable = false)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @JsonBackReference
+    private Shipping shipping;
 
 //    public DetailCart() {
 //    }
@@ -58,6 +58,14 @@ public class DetailCart {
 //        this.price_prod = price_prod;
 //        this.total_prod = total_prod;
 //    }
+
+    public Shipping getShipping() {
+        return shipping;
+    }
+
+    public void setShipping(Shipping shipping) {
+        this.shipping = shipping;
+    }
 
     
     public String getId_product() {

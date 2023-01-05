@@ -31,11 +31,19 @@ public class Cart {
      private int subtotal;
      private int discount;
      private int total;
-     
+     private int status;
 //     @OneToMany(mappedBy = "cart",cascade = CascadeType.ALL)
 //    @JsonManagedReference
 //    @Cascade(org.hibernate.annotations.CascadeType.ALL)
 //    private List<DetailCart> detailCart;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public Cart() {
     }

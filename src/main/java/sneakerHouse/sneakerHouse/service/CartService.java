@@ -38,6 +38,11 @@ public class CartService {
         c.setTotal(cart.getTotal());
         c.setId_user(cart.getId_user());
         c.setDate(cart.getDate());
+        c.setStatus(cart.getStatus());
         return cartRepository.save(c);
     }
+    public List<Cart> getListCart(){
+        return cartRepository.getListCart();
+    }
+    
 }
