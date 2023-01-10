@@ -18,5 +18,8 @@ import sneakerHouse.sneakerHouse.entity.Size;
  */
 public interface SizeRepository extends JpaRepository<Size, Long> {
     @Query(value="select s from Size s where s.id_brand=?1 and s.gender=?2")
-    List<?> getSize(@Param("id_brand") String id_brand,int gender);
+    Size[] getSize(@Param("id_brand") String id_brand,int gender);
+    
+     @Query(value="select s from Size s where s.id_brand=?1")
+    Size[] getSizebyBrand(@Param("id_brand") String id_brand);
 }

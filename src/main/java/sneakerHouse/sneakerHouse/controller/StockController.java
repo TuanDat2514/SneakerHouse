@@ -5,7 +5,9 @@
  */
 package sneakerHouse.sneakerHouse.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.mapping.Array;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,8 @@ public class StockController {
 //        
 //    }
      @GetMapping("/stockProduct/{id_product}")
-    public List<?> getStock(@PathVariable String id_product,@RequestParam int gender){
-        return stockRepository.getStock(id_product,gender);
-        
+    public ArrayList<?> getStock(@PathVariable String id_product,@RequestParam String id_brand){
+        ArrayList<?> l = stockRepository.getStockProd(id_product,id_brand);
+         return l;
     }
 }

@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
+import sneakerHouse.sneakerHouse.dto.ListSize;
 
 /**
  *
@@ -31,7 +32,7 @@ public class Product {
     @Id
     @Column(name = "id_product")
     private String id_product;
-    
+    @Column(name = "id_brand",insertable = false,updatable = false)
     private String id_brand;
     @Column(name = "name")
     private String name;
@@ -46,26 +47,58 @@ public class Product {
     private int gender;
     private String img;
     private String sub_img;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_brand_link",nullable = false)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JsonBackReference
-    private Brand brand;
-    
-    
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
-     @JsonManagedReference
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Stock> stock;
+    //ListSize listSize;
+    @Column(insertable = false)
+    private Size[] sizeMan;
+    @Column(insertable = false)
+    private Size[] sizeWoman;
+     @Column(insertable = false)
+    private Stock[] stock;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "id_brand",nullable = true,updatable = false,insertable = false)
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    @JsonBackReference
+//    private Brand brand;
+      
+//    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
+//     @JsonManagedReference
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    private List<Stock> stock;
 
-    public List<Stock> getStock() {
+    public Size[] getSizeMan() {
+        return sizeMan;
+    }
+
+    public void setSizeMan(Size[] sizeMan) {
+        this.sizeMan = sizeMan;
+    }
+
+    public Size[] getSizeWoman() {
+        return sizeWoman;
+    }
+
+    public void setSizeWoman(Size[] sizeWoman) {
+        this.sizeWoman = sizeWoman;
+    }
+
+    public Stock[] getStock() {
         return stock;
     }
 
-    public void setStock(List<Stock> stock) {
+    public void setStock(Stock[] stock) {
         this.stock = stock;
     }
-    
+
+ 
+
+//    public List<Stock> getStock() {
+//        return stock;
+//    }
+//
+//    public void setStock(List<Stock> stock) {
+//        this.stock = stock;
+//    }
+//    
   
     public void setId_product(String id_product) {
         this.id_product = id_product;
@@ -123,13 +156,13 @@ public class Product {
         this.trending = trending;
     }
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
+//    public Brand getBrand() {
+//        return brand;
+//    }
+//
+//    public void setBrand(Brand brand) {
+//        this.brand = brand;
+//    }
 
     public int getGender() {
         return gender;

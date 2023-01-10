@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import sneakerHouse.sneakerHouse.entity.Size;
 import sneakerHouse.sneakerHouse.repository.SizeRepository;
 
 /**
@@ -27,7 +28,7 @@ public class SizeController {
     SizeRepository sizeRepository;
     
     @GetMapping("/getSizebyGender/{id_brand}")
-     public List<?> listSize(@PathVariable String id_brand,@RequestParam int gender){
+     public Size[] listSize(@PathVariable String id_brand,@RequestParam int gender){
         return sizeRepository.getSize(id_brand, gender);
     }
 }

@@ -10,7 +10,7 @@ public class SneakerHouseApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SneakerHouseApplication.class, args);
-                System.out.println("123");
+                System.out.println("Day roi!!!");
 	}
 
 }

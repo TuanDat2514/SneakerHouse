@@ -29,6 +29,7 @@ public class Stock {
     private Long id;
     private String id_product;
     private Long id_size;
+    private int gender;
     private int amount;
 
 //    @OneToOne(mappedBy = "stock",cascade = CascadeType.ALL)
@@ -42,11 +43,11 @@ public class Stock {
 //        this.size = size;
 //    }
 
-     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id",nullable = false)
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @JsonBackReference
-    private Product product;
+//     @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "product_id",nullable = false)
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    @JsonBackReference
+//    private Product product;
     
     public Long getId_size() {
         return id_size;
@@ -55,6 +56,18 @@ public class Stock {
     public void setId_size(Long id_size) {
         this.id_size = id_size;
     }
+    
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+//
+//    public Product getProduct() {
+//        return product;
+//    }
 
 //    public Size getSize() {
 //        return size;
@@ -63,7 +76,10 @@ public class Stock {
 //    public void setSize(Size size) {
 //        this.size = size;
 //    }
-    
+//    public void setProduct(Product product) {    
+//        this.product = product;
+//    }
+
     public Long getId() {
         return id;
     }

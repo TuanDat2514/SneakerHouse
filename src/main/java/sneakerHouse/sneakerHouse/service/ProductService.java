@@ -45,14 +45,17 @@ public class ProductService {
         return prodRepo.getProductbyColor(color);      
     }
     
-    public void delete(Long id_detail) {
-        prodRepo.deleteById(id_detail.toString());
+    public void delete(String id_detail) {
+        prodRepo.deleteById(id_detail);
     }
     
     public Product updateProdcut(Product updateProduct){
         Product oldProduct = prodRepo.getProductbyId(updateProduct.getId_product());
         if(oldProduct == null){
             return null;
+        }
+        if(updateProduct.getImg() != null){
+            oldProduct.setImg(updateProduct.getImg());
         }
         oldProduct.setDescription(updateProduct.getDescription());
         oldProduct.setPrice(updateProduct.getPrice());

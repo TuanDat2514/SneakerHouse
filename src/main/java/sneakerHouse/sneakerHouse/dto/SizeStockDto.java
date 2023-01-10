@@ -5,30 +5,23 @@
  */
 package sneakerHouse.sneakerHouse.dto;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Admin
  */
 public class SizeStockDto {
-    private Long id_product;
     private double size;
     private int gender;
     private int amount;
 
-    public SizeStockDto(Long id_product, double size, int gender, int amount) {
-        this.id_product = id_product;
+    public SizeStockDto(double size, int gender, int amount) {
         this.size = size;
         this.gender = gender;
         this.amount = amount;
     }
 
-    public Long getId_product() {
-        return id_product;
-    }
-
-    public void setId_product(Long id_product) {
-        this.id_product = id_product;
-    }
 
     public double getSize() {
         return size;
