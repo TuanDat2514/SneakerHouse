@@ -62,4 +62,8 @@ public class ProductService {
         
         return prodRepo.save(oldProduct);
     }
+    
+    public List<Product> searchProduct(String key){
+        return prodRepo.searchProductbyName(key);
+    }
 }

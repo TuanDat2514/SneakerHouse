@@ -87,7 +87,7 @@ public class ProductController {
     public Product updateProduct(@RequestBody Product updateProduct) {
         return productService.updateProdcut(updateProduct);
     }
-
+    
     @GetMapping("/filter")
     public List<?> getProductbyFilter(@RequestBody Filter filter) {
         if (filter.getBrand() == "" & filter.getGender() == 0) {
@@ -101,5 +101,9 @@ public class ProductController {
         }
         return productService.listProductbyFilter(filter.getGender(), filter.getColor(), filter.getBrand());
     }
-
+    
+    @GetMapping("/search")
+    public List<?> searchProduct(@RequestParam String key){
+        return productService.searchProduct(key);
+    }
 }

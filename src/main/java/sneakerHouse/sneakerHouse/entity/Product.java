@@ -32,7 +32,7 @@ public class Product {
     @Id
     @Column(name = "id_product")
     private String id_product;
-    @Column(name = "id_brand",insertable = false,updatable = false)
+    @Column(name = "id_brand")
     private String id_brand;
     @Column(name = "name")
     private String name;
@@ -48,11 +48,11 @@ public class Product {
     private String img;
     private String sub_img;
     //ListSize listSize;
-    @Column(insertable = false)
+    @Column(name = "sizeMan",insertable = false,updatable = false)
     private Size[] sizeMan;
-    @Column(insertable = false)
+    @Column(insertable = false,updatable = false)
     private Size[] sizeWoman;
-     @Column(insertable = false)
+    @Column(insertable = false,updatable = false)
     private Stock[] stock;
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "id_brand",nullable = true,updatable = false,insertable = false)
